@@ -7,5 +7,14 @@
         </div>
     </nav>
     <br>
-
+    <div class="row">
+      <form class="col s12">
+        <div class="row">
+          <div class="input-field col s12">
+              <input #input (keyup.enter)="selectFilm(input.value)" type="text" placeholder="Rechercher un film">
+              <label class="active">Rechercher un film</label>
+          </div>
+        </div>
+      </form>
+    </div>
     <router-outlet></router-outlet> 
