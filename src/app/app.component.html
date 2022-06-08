@@ -13,6 +13,7 @@
           <div class="input-field col s12">
               <input #input (keyup.enter)="selectFilm(input.value)" type="text" placeholder="Rechercher un film">
               <label class="active">Rechercher un film</label>
+              <p>Vous avez sélectionné le film : {{filmSelected?.primaryTitle}}</p>
           </div>
         </div>
       </form>
