@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="row">
+        <div *ngFor="let film of filmList" class="grid-example col s12 m6">
+            <div (click)="goToFilm(film)" class="card horizontal" appBorderCard>
+                <div class="card-stacked">
+                    <div class="card-content">
+                        <strong>{{ film.primaryTitle }}</strong>
+                        <p><small><b>Type de film : </b>{{ film.titleType }}</small> </p>
+                        <p><small><b>Titre original : </b>{{ film.originalTitle }}</small></p>
+                        <p><small><b>Année de sortie : </b>{{ film.startYear }}</small></p>
+                        <span *ngFor="let genre of film.genres" class="{{ genre | filmTypeColor }}">
+                            {{ genre }}</span>
+                    </div>
+                </div>
+            </div>
+            <br>
+        </div>
+    </div>
+</div> 

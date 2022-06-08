@@ -1,0 +1,39 @@
+<div *ngIf="film" class="row">
+    <div class="col s12 m8 offset-m2">
+    <h2 class="header center">{{ film.primaryTitle }}</h2>
+    <div class="card horizontal hoverable">
+      <div class="card-stacked">
+        <div class="card-content">
+          <table class="bordered striped">
+            <tbody>
+              <tr>
+                <td>Type du film</td>
+                <td><strong>{{ film.titleType }}</strong></td>
+              </tr>
+              <tr>
+                <td>Titre original</td>
+                <td><strong>{{ film.originalTitle }}</strong></td>
+              </tr>
+              <tr>
+                <td>Année de sortie</td>
+                <td><strong>{{ film.startYear }}</strong></td>
+              </tr>
+              <tr>
+                <td>Genres</td>
+                <td>
+                    <span *ngFor="let genre of film.genres" class="{{ genre | filmTypeColor }}">{{ genre }}</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card-action">
+          <a (click)="goToFilmsList()">Retour</a>
+          <a (click)="goToEditFilm(film)">Éditer</a>
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
+    <h4 *ngIf='!film' class="center">Aucun film à afficher !</h4>
+    

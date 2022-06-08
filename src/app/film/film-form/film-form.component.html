@@ -1,0 +1,84 @@
+<form *ngIf="film" (ngSubmit)="onSubmit()" #filmForm="ngForm">
+    <div class="row">
+      <div class="col s8 offset-s2">
+        <div class="card-panel">
+    
+          <!-- Type de film -->
+          <div class="form-group">
+            <label for="titleType">Type de film</label>
+            <input type="text" class="form-control" id="titleType"
+                    required
+                    pattern="^[a-zA-Z0-9àéèç]{1,25}$"
+                   [(ngModel)]="film.titleType" name="titleType"
+                   #titleType="ngModel">
+    
+            <div [hidden]="titleType.valid || titleType.pristine"
+                  class="card-panel red accent-1">
+                  Le type du film est requis (1-25).
+            </div>
+          </div>
+
+          <!-- Titre original -->
+          <div class="form-group">
+            <label for="originalTitle">Titre original</label>
+            <input type="text" class="form-control" id="originalTitle"
+                    required
+                    pattern="^[a-zA-Z0-9àéèç]{1,25}$"
+                   [(ngModel)]="film.originalTitle" name="originalTitle"
+                   #originalTitle="ngModel">
+    
+            <div [hidden]="originalTitle.valid || originalTitle.pristine"
+                  class="card-panel red accent-1">
+                  Le titre original du film est requis (1-25).
+            </div>
+          </div>
+    
+          <!-- Année de sortie -->
+          <div class="form-group">
+            <label for="startYear">Année de sortie</label>
+            <input type="number" class="form-control" id="startYear"
+                    required
+                    pattern="^[0-9]{1,4}$"
+                   [(ngModel)]="film.startYear" name="startYear"
+                   #startYear="ngModel">
+             <div [hidden]="startYear.valid || startYear.pristine"
+                   class="card-panel red accent-1">
+                   Les années sont comprises entre 0 et 9999.
+             </div>
+          </div>
+  
+          <!-- Genres -->
+          <form class="form-group">
+            <label for="genres">Genres</label>
+            <p *ngFor="let genre of genres">
+              <label>
+                <input type="checkbox"
+                  class="filled-in"
+                  id="{{ genre }}"
+                  [value]="genre"
+                  [checked]="hasGenre(genre)"
+                  [disabled]="!isGenresValid(genre)"
+                  (change)="selectGenre($event, genre)"/>
+                <span [attr.for]="genre">
+                  <div class="{{ genre | filmTypeColor }}">
+                    {{ genre }}
+                  </div>
+                </span>
+              </label>
+            </p>
+          </form>
+    
+          <!-- Submit button -->
+          <div class="divider"></div>
+          <div class="section center">
+            <button type="submit"
+              class="waves-effect waves-light btn"
+              [disabled]="filmForm.form.valid">
+              Valider</button>
+          </div>
+    
+        </div>
+      </div>
+    </div>
+  </form>
+  <h3 *ngIf="!film" class="center">Aucun film à éditer...</h3>
